@@ -133,7 +133,7 @@ $(document).ready(function() {
         widgets: ['zebra']
     });
 
-    var data = {"OkPercent": 33.333333333333336, "KoPercent": 66.66666666666667};
+    var data = {"OkPercent": 100.0, "KoPercent": 0.0};
     var dataset = [
         {
             "label" : "FAIL",
@@ -173,7 +173,7 @@ $(document).ready(function() {
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.0, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.0, 500, 1500, "Open Proposal"], "isController": false}, {"data": [0.0, 500, 1500, "Login"], "isController": false}, {"data": [0.0, 500, 1500, "Search Proposal"], "isController": false}]}, function(index, item){
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.20555555555555555, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.25, 500, 1500, "Open Proposal"], "isController": false}, {"data": [0.0, 500, 1500, "Login"], "isController": false}, {"data": [0.36666666666666664, 500, 1500, "Search Proposal"], "isController": false}]}, function(index, item){
         switch(index){
             case 0:
                 item = item.toFixed(3);
@@ -187,7 +187,7 @@ $(document).ready(function() {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 3, 2, 66.66666666666667, 2050.0, 0, 6150, 0.0, 6150.0, 6150.0, 6150.0, 0.422237860661506, 22.458326002814918, 0.0], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["Open Proposal", 1, 1, 100.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, Infinity, Infinity, NaN], "isController": false}, {"data": ["Login", 1, 0, 0.0, 6150.0, 6150, 6150, 6150.0, 6150.0, 6150.0, 6150.0, 0.16260162601626016, 25.682482215447152, 0.0], "isController": false}, {"data": ["Search Proposal", 1, 1, 100.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, Infinity, Infinity, NaN], "isController": false}]}, function(index, item){
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 90, 0, 0.0, 3038.6777777777784, 189, 7459, 1562.0, 6350.5, 6581.75, 7459.0, 0.44793279017334997, 79.56479091181697, 0.0], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["Open Proposal", 30, 0, 0.0, 1476.7, 189, 2012, 1530.0, 1911.8000000000002, 1990.0, 2012.0, 0.15565171372536812, 33.27172423672291, 0.0], "isController": false}, {"data": ["Login", 30, 0, 0.0, 6126.833333333333, 5535, 7459, 6044.0, 6665.5, 7056.4, 7459.0, 0.15157792621186553, 23.94857221488192, 0.0], "isController": false}, {"data": ["Search Proposal", 30, 0, 0.0, 1512.4999999999998, 1290, 2134, 1474.0, 1821.5000000000005, 2008.0499999999997, 2134.0, 0.15540337536131282, 25.039717905641663, 0.0], "isController": false}]}, function(index, item){
         switch(index){
             // Errors pct
             case 3:
@@ -217,7 +217,7 @@ $(document).ready(function() {
     }, [[0, 0]], 0, summaryTableHeader);
 
     // Create error table
-    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": [{"data": ["500/org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:\\nScript3.groovy: 4: Unexpected input: '&lt;EOF&gt;' @ line 4, column 1.\\n1 error\\n", 1, 50.0, 33.333333333333336], "isController": false}, {"data": ["500/org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:\\nScript2.groovy: 12: Unexpected input: '&lt;EOF&gt;' @ line 12, column 1.\\n1 error\\n", 1, 50.0, 33.333333333333336], "isController": false}]}, function(index, item){
+    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": []}, function(index, item){
         switch(index){
             case 2:
             case 3:
@@ -228,7 +228,7 @@ $(document).ready(function() {
     }, [[1, 1]]);
 
         // Create top5 errors by sampler
-    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 3, 2, "500/org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:\\nScript3.groovy: 4: Unexpected input: '&lt;EOF&gt;' @ line 4, column 1.\\n1 error\\n", 1, "500/org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:\\nScript2.groovy: 12: Unexpected input: '&lt;EOF&gt;' @ line 12, column 1.\\n1 error\\n", 1, "", "", "", "", "", ""], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": ["Open Proposal", 1, 1, "500/org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:\\nScript3.groovy: 4: Unexpected input: '&lt;EOF&gt;' @ line 4, column 1.\\n1 error\\n", 1, "", "", "", "", "", "", "", ""], "isController": false}, {"data": [], "isController": false}, {"data": ["Search Proposal", 1, 1, "500/org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:\\nScript2.groovy: 12: Unexpected input: '&lt;EOF&gt;' @ line 12, column 1.\\n1 error\\n", 1, "", "", "", "", "", "", "", ""], "isController": false}]}, function(index, item){
+    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 90, 0, "", "", "", "", "", "", "", "", "", ""], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": [], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}]}, function(index, item){
         return item;
     }, [[0, 0]], 0);
 
